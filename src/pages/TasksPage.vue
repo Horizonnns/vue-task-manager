@@ -1,8 +1,12 @@
+<script setup>
+const tasks = false;
+</script>
+
 <template>
 	<main class="bg-white border shadow-xl rounded-lg space-y-6 p-8 my-10">
 		<!-- table -->
-		<table class="table">
-			<thead class="thead">
+		<table v-if="tasks" class="table">
+			<thead>
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Заголовок</th>
@@ -17,7 +21,13 @@
 				</tr>
 			</thead>
 
-			<tbody id="tableBody" class="tbody-fonts"></tbody>
+			<tbody id="tableBody"></tbody>
 		</table>
+
+		<div v-else class="flex items-center justify-between">
+			<p class="text-center text-lg">Список задач пуст...</p>
+
+			<button>Создать таск</button>
+		</div>
 	</main>
 </template>
