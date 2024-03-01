@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
 	content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
 	theme: {
@@ -8,6 +9,12 @@ export default {
 				padding: '1rem',
 			},
 		},
+
+		screens: {
+			lg: '1280px',
+			xl: '1440px',
+		},
 	},
+
 	plugins: [],
 };
