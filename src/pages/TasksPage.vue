@@ -7,13 +7,16 @@ import {
 	DialogPanel,
 } from '@headlessui/vue';
 import { useTaskStore } from '../store/store';
+import IconDelete from '../components/icons/IconDelete.vue';
 
 const taskStore = useTaskStore();
 onMounted(() => {
 	taskStore.loadTasksFromLocalStorage();
 });
 
-const hasTasks = localStorage.getItem('tasks') === null;
+const hasTasks =
+	localStorage.getItem('tasks') === '[]' ||
+	localStorage.getItem('tasks') === null;
 
 const form = ref({
 	id: 1,
@@ -65,7 +68,7 @@ function openModal() {
 					<th scope="col">Описание</th>
 					<th scope="col">Создано</th>
 					<th scope="col">Обновлено</th>
-					<th scope="col">Дата окончания</th>
+					<th scope="col">Редактирование</th>
 					<th scope="col">Тэг</th>
 				</tr>
 			</thead>
@@ -84,7 +87,15 @@ function openModal() {
 					<th scope="col">Описание</th>
 					<th scope="col">{{ task.created_at }}</th>
 					<th scope="col">Обновлено</th>
-					<th scope="col">окончания</th>
+					<th scope="col">
+						<button
+							@click="taskStore.removeTask(task.id)"
+							title="Удалить задачу"
+							class="rounded-lg text-red-500 p-2 bg-white hover:bg-gray-100 border"
+						>
+							<IconDelete />
+						</button>
+					</th>
 					<th scope="col">{{ task.tag }}</th>
 				</tr>
 			</tbody>

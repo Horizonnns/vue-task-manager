@@ -27,9 +27,14 @@ export const useTaskStore = defineStore({
 			const tasksFromLocalStorage = JSON.parse(
 				localStorage.getItem('tasks') || '[]'
 			);
-			this.tasks = tasksFromLocalStorage;
 
+			this.tasks = tasksFromLocalStorage;
 			this.nextId = parseInt(localStorage.getItem('nextId')) || 1;
+		},
+
+		removeTask(id) {
+			this.tasks = this.tasks.filter((task) => task.id !== id);
+			this.saveTasksToLocalStorage();
 		},
 	},
 });
