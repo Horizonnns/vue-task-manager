@@ -31,13 +31,24 @@ const form = ref({
 	created_at: Date.now(),
 });
 
+// reset-modal-form
+const resetModalForm = () => {
+	form.value = {
+		title: '',
+		category: '',
+		priority: '',
+		status: '',
+		outdate: '',
+		tag: '',
+	};
+};
+
 // create-new-task
 const submitTask = () => {
 	taskStore.addTask(form.value);
 	notify('message', 'Задача успешно создано!');
 	closeModal();
-
-	// window.location.reload();
+	resetModalForm();
 };
 
 // delete-task-with-id
