@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { notify } from '../composables/notify';
 import {
 	TransitionRoot,
 	TransitionChild,
@@ -30,11 +31,19 @@ const form = ref({
 	created_at: Date.now(),
 });
 
+// create-new-task
 const submitTask = () => {
 	taskStore.addTask(form.value);
+	notify('message', 'Задача успешно создано!');
 	closeModal();
 
 	// window.location.reload();
+};
+
+// delete-task-with-id
+const deleteTask = (task) => {
+	taskStore.removeTask(task.id);
+	notify('message', 'Задача успешно удалена!');
 };
 
 const isOpen = ref(false);
@@ -89,7 +98,7 @@ function openModal() {
 					<th scope="col">Обновлено</th>
 					<th scope="col">
 						<button
-							@click="taskStore.removeTask(task.id)"
+							@click="deleteTask(task)"
 							title="Удалить задачу"
 							class="rounded-lg text-red-500 p-2 bg-white hover:bg-gray-100 border"
 						>
