@@ -1,21 +1,22 @@
 <script setup>
-import { ref } from 'vue';
-import { TransitionRoot, TransitionChild, Dialog } from '@headlessui/vue';
+import { onMounted, ref } from 'vue';
+import {
+	TransitionRoot,
+	TransitionChild,
+	Dialog,
+	DialogPanel,
+} from '@headlessui/vue';
 import { useTaskStore } from '../store/store';
+
 const taskStore = useTaskStore();
+onMounted(() => {
+	taskStore.loadTasksFromLocalStorage();
+});
 
-const tasks = ref(false);
-const isOpen = ref(false);
-
-function closeModal() {
-	isOpen.value = false;
-}
-function openModal() {
-	isOpen.value = true;
-}
+const hasTasks = localStorage.getItem('tasks') === null;
 
 const form = ref({
-	id: 0,
+	id: 1,
 	title: '',
 	// descr: '',
 	category: '',
@@ -23,21 +24,37 @@ const form = ref({
 	status: '',
 	outdate: '',
 	tag: '',
+	created_at: Date.now(),
 });
 
 const submitTask = () => {
-	form.value.id++;
 	taskStore.addTask(form.value);
 	closeModal();
+
+	// window.location.reload();
 };
+
+const isOpen = ref(false);
+function closeModal() {
+	isOpen.value = false;
+}
+function openModal() {
+	isOpen.value = true;
+}
 </script>
 
 <template>
 	<main class="bg-white border shadow-xl rounded-lg space-y-6 p-6 my-10">
-		<p>{{ taskStore }}</p>
+		<button
+			v-if="!hasTasks"
+			@click="openModal"
+			class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
+		>
+			Создать таск
+		</button>
 
 		<!-- table -->
-		<table v-if="tasks" class="table">
+		<table v-if="!hasTasks" class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
@@ -53,13 +70,35 @@ const submitTask = () => {
 				</tr>
 			</thead>
 
-			<tbody id="tableBody"></tbody>
+			<tbody>
+				<tr
+					v-for="task in taskStore.tasks"
+					:key="task.id"
+					class="cursor-pointer"
+				>
+					<th scope="col">{{ task.id }}</th>
+					<th scope="col">{{ task.title }}</th>
+					<th scope="col">{{ task.category }}</th>
+					<th scope="col">{{ task.priority }}</th>
+					<th scope="col">{{ task.status }}</th>
+					<th scope="col">Описание</th>
+					<th scope="col">{{ task.created_at }}</th>
+					<th scope="col">Обновлено</th>
+					<th scope="col">окончания</th>
+					<th scope="col">{{ task.tag }}</th>
+				</tr>
+			</tbody>
 		</table>
 
 		<div v-else class="flex items-center justify-between">
 			<p class="text-center text-lg">Список задач пуст...</p>
 
-			<button @click="openModal">Создать таск</button>
+			<button
+				@click="openModal"
+				class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
+			>
+				Создать таск
+			</button>
 		</div>
 
 		<!-- create-task-modal -->
@@ -163,8 +202,7 @@ const submitTask = () => {
 
 								<button
 									@click="submitTask"
-									type="submit"
-									class="btn btn-success bg-green-600"
+									class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
 								>
 									Добавить
 								</button>
