@@ -1,14 +1,16 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { notify } from '../composables/notify';
+import { useTaskStore } from '../store/store';
+import AppInput from '../components/ui/AppInput.vue';
+import IconExit from '../components/icons/IconExit.vue';
+import IconDelete from '../components/icons/IconDelete.vue';
 import {
 	TransitionRoot,
 	TransitionChild,
 	Dialog,
 	DialogPanel,
 } from '@headlessui/vue';
-import { useTaskStore } from '../store/store';
-import IconDelete from '../components/icons/IconDelete.vue';
 
 const taskStore = useTaskStore();
 onMounted(() => {
@@ -69,7 +71,7 @@ function openModal() {
 		<button
 			v-if="tasks.length"
 			@click="openModal"
-			class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
+			class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
 		>
 			Создать таск
 		</button>
@@ -120,15 +122,15 @@ function openModal() {
 
 			<button
 				@click="openModal"
-				class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
+				class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
 			>
 				Создать таск
 			</button>
 		</div>
 
-		<!-- create-task-modal -->
+		<!-- create-tasks-modal -->
 		<TransitionRoot appear :show="isOpen" as="template">
-			<Dialog as="div" @close="closeModal" class="relative z-10">
+			<Dialog as="div" class="relative z-10">
 				<TransitionChild
 					as="template"
 					enter="duration-300 ease-out"
@@ -155,81 +157,71 @@ function openModal() {
 							leave-to="opacity-0 scale-95"
 						>
 							<DialogPanel
-								class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+								class="w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all"
 							>
-								<form class="flex space-x-10">
-									<!-- left side -->
-									<div>
-										<div class="flex flex-col">
-											<label for="title">Заголовок</label>
-											<input
+								<div>
+									<div
+										class="flex justify-between items-center pb-2 mb-4 border-b-2"
+									>
+										<h2 class="text-xl font-bold">Новая задача</h2>
+
+										<IconExit @click="closeModal" />
+									</div>
+
+									<div class="flex justify-between space-x-5 border-b-2 pb-4">
+										<!-- left-side -->
+										<div class="space-y-5">
+											<AppInput
+												size="base"
+												type="text"
+												title="Заголовок"
+												placeholder="Первое задание"
 												v-model="form.title"
-												id="title"
-												type="text"
-												class="border"
 											/>
-										</div>
 
-										<div class="flex flex-col">
-											<label for="category">Категория</label>
-											<input
+											<AppInput
+												size="base"
+												type="text"
+												title="Категория"
+												placeholder="Категория задачи"
 												v-model="form.category"
-												id="category"
-												type="text"
-												class="border"
 											/>
-										</div>
 
-										<div class="flex flex-col">
-											<label for="priority">Приоритет</label>
-											<input
+											<AppInput
+												size="base"
+												type="text"
+												title="Приоритет"
+												placeholder="Приоритет задачи"
 												v-model="form.priority"
-												id="priority"
-												type="text"
-												class="border"
 											/>
 										</div>
-									</div>
 
-									<!-- right side -->
-									<div>
-										<div class="flex flex-col">
-											<label for="status">Статус</label>
-											<input
+										<!-- right-side -->
+										<div class="space-y-5">
+											<AppInput
+												size="base"
+												type="text"
+												title="Статус"
+												placeholder="Статус текущей задачи"
 												v-model="form.status"
-												id="status"
-												type="text"
-												class="border"
 											/>
-										</div>
 
-										<div class="flex flex-col">
-											<label for="outdate">Дата окончания</label>
-											<input
-												v-model="form.outdate"
-												id="outdate"
+											<AppInput
+												size="base"
 												type="text"
-												class="border"
-											/>
-										</div>
-
-										<div class="flex flex-col">
-											<label for="tag">Тэг</label>
-											<input
+												title="Тэг"
+												placeholder="#тэг"
 												v-model="form.tag"
-												id="tag"
-												type="text"
-												class="border"
 											/>
 										</div>
 									</div>
-								</form>
+								</div>
 
 								<button
 									@click="submitTask"
-									class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
+									class="flex justify-center bg-gray-100 hover:bg-gray-200 active:bg-gray-300 duration-200 border rounded-full text-sm font-bold px-4 mt-4 pt-1.5 pb-2 w-full"
 								>
-									Добавить
+									Создать
 								</button>
 							</DialogPanel>
 						</TransitionChild>
