@@ -8,6 +8,14 @@ export default {
 				center: true,
 				padding: '1rem',
 			},
+
+			colors: {
+				secondary: '#731982',
+				blue: {
+					10: '#283444',
+					20: '#3b82f6',
+				},
+			},
 		},
 
 		screens: {
