@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { notify } from '../composables/notify';
 import {
 	TransitionRoot,
@@ -15,9 +15,7 @@ onMounted(() => {
 	taskStore.loadTasksFromLocalStorage();
 });
 
-const hasTasks =
-	localStorage.getItem('tasks') === '[]' ||
-	localStorage.getItem('tasks') === null;
+const tasks = computed(() => taskStore.tasks);
 
 const form = ref({
 	id: 1,
@@ -69,7 +67,7 @@ function openModal() {
 <template>
 	<main class="bg-white border shadow-xl rounded-lg space-y-6 p-6 my-10">
 		<button
-			v-if="!hasTasks"
+			v-if="tasks.length"
 			@click="openModal"
 			class="px-3 py-1.5 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white text-sm border shadow"
 		>
@@ -77,7 +75,7 @@ function openModal() {
 		</button>
 
 		<!-- table -->
-		<table v-if="!hasTasks" class="table table-striped table-hover">
+		<table v-if="tasks.length" class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
@@ -94,11 +92,7 @@ function openModal() {
 			</thead>
 
 			<tbody>
-				<tr
-					v-for="task in taskStore.tasks"
-					:key="task.id"
-					class="cursor-pointer"
-				>
+				<tr v-for="task in tasks" :key="task.id" class="cursor-pointer">
 					<th scope="col">{{ task.id }}</th>
 					<th scope="col">{{ task.title }}</th>
 					<th scope="col">{{ task.category }}</th>
