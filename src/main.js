@@ -5,8 +5,9 @@ import './assets/scss/main.scss';
 import * as bootstrap from 'bootstrap';
 
 import router from './router';
+import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import './assets/css/main.css';
 import App from './App.vue';
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(createPinia()).mount('#app');
