@@ -58,7 +58,7 @@ const edTask = (task) => {
 			@click="openModal('create')"
 			class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
 		>
-			Создать таск
+			{{ $t('createTaskBtn') }}
 		</button>
 
 		<!-- table -->
@@ -66,15 +66,15 @@ const edTask = (task) => {
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Заголовок</th>
-					<th scope="col">Категория</th>
-					<th scope="col">Приоритет</th>
-					<th scope="col">Статус</th>
-					<th scope="col">Описание</th>
-					<th scope="col">Создано</th>
-					<th scope="col">Обновлено</th>
-					<th scope="col">Редактировать</th>
-					<th scope="col">Тэг</th>
+					<th scope="col">{{ $t('tableTitle') }}</th>
+					<th scope="col">{{ $t('category') }}</th>
+					<th scope="col">{{ $t('priority') }}</th>
+					<th scope="col">{{ $t('status') }}</th>
+					<th scope="col">{{ $t('description') }}</th>
+					<th scope="col">{{ $t('createdAt') }}</th>
+					<th scope="col">{{ $t('updatedAt') }}</th>
+					<th scope="col">{{ $t('edit') }}</th>
+					<th scope="col">{{ $t('tag') }}</th>
 				</tr>
 			</thead>
 
@@ -92,7 +92,7 @@ const edTask = (task) => {
 						<button
 							@click.stop="edTask(task)"
 							title="Изменить задачу"
-							class="bg-white hover:!bg-gray-100 active:!bg-gray-200 border rounded-lg p-2 ml-6"
+							class="bg-white hover:!bg-gray-100 active:!bg-gray-200 border rounded-lg p-2"
 						>
 							<IconEdit />
 						</button>
@@ -111,13 +111,15 @@ const edTask = (task) => {
 		</table>
 
 		<div v-else class="flex items-center justify-between">
-			<p class="text-center text-lg">Список задач пуст...</p>
+			<p class="text-center text-lg">
+				{{ $t('tasklist') }}
+			</p>
 
 			<button
 				@click="openModal('create')"
 				class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
 			>
-				Создать таск
+				{{ $t('createTaskBtn') }}
 			</button>
 		</div>
 	</main>
