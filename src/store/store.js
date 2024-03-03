@@ -7,12 +7,7 @@ export const useTaskStore = defineStore({
 		// adding task
 		addTask(task) {
 			task.id = this.nextId++;
-
-			const newTask = {
-				...task,
-			};
-
-			this.tasks.push(newTask);
+			this.tasks.push({ ...task });
 			this.saveTasksToLocalStorage();
 		},
 
@@ -32,8 +27,18 @@ export const useTaskStore = defineStore({
 			this.nextId = parseInt(localStorage.getItem('nextId')) || 1;
 		},
 
+		// delete task
 		removeTask(id) {
 			this.tasks = this.tasks.filter((task) => task.id !== id);
+			this.saveTasksToLocalStorage();
+		},
+
+		// edit task
+		editTask(editedTask) {
+			this.tasks = this.tasks.map((task) =>
+				task.id === editedTask.id ? { ...task, ...editedTask } : task
+			);
+
 			this.saveTasksToLocalStorage();
 		},
 	},
