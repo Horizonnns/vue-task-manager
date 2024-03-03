@@ -10,4 +10,16 @@ import { createApp } from 'vue';
 import './assets/css/main.css';
 import App from './App.vue';
 
-createApp(App).use(router).use(createPinia()).mount('#app');
+import { createI18n } from 'vue-i18n';
+import messages from '@intlify/unplugin-vue-i18n/messages';
+
+const i18n = createI18n({
+	legacy: false,
+	globalInjection: true,
+	locale: 'ru',
+	fallbackLocale: 'en',
+	availableLocales: ['en', 'ru'],
+	messages: messages,
+});
+
+createApp(App).use(router).use(i18n).use(createPinia()).mount('#app');
