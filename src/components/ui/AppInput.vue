@@ -46,6 +46,7 @@ const size = computed(() => {
 	};
 });
 
+// input focus styles
 const smFocused = '-translate-y-[52px] bg-white text-xs !text-secondary';
 const smNotFocused = '-translate-y-[38px] text-gray-800';
 const baseFocused = '-translate-y-[54px] bg-white text-sm !text-secondary';
