@@ -15,14 +15,17 @@ export const useTaskStore = defineStore({
 		saveTasksToLocalStorage() {
 			localStorage.setItem('tasks', JSON.stringify(this.tasks));
 			localStorage.setItem('nextId', this.nextId);
+			localStorage.setItem('darkMode', JSON.stringify(this.darkMode));
 		},
 
 		// get from localStorage tasks
-		loadTasksFromLocalStorage() {
+		loadFromLocalStorage() {
+			const darkMode = JSON.parse(localStorage.getItem('darkMode'));
+			this.darkMode = darkMode;
+
 			const tasksFromLocalStorage = JSON.parse(
 				localStorage.getItem('tasks') || '[]'
 			);
-
 			this.tasks = tasksFromLocalStorage;
 			this.nextId = parseInt(localStorage.getItem('nextId')) || 1;
 		},
@@ -45,6 +48,7 @@ export const useTaskStore = defineStore({
 		// dark mode toggle
 		toggleDarkMode() {
 			this.darkMode = !this.darkMode;
+			this.saveTasksToLocalStorage();
 		},
 	},
 });
