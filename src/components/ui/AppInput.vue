@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useTaskStore } from '../../store/store';
+const taskStore = useTaskStore();
 
 const props = defineProps({
 	modelValue: String,
@@ -78,6 +80,8 @@ const updateValue = (event) => {
 			@blur="handleBlur"
 			:id="id.toString()"
 			:class="[
+				taskStore.darkMode &&
+					'!bg-darkmode-20 !border-darkmode-10 text-gray-200 placeholder:text-gray-600',
 				size,
 				'block border rounded-lg outline-none font-medium placeholder:font-normal w-full appearance-none focus:outline-none focus:ring-0 focus:!border-blue-10 disabled:bg-gray-50 peer dark:bg-transparent',
 			]"
@@ -94,6 +98,8 @@ const updateValue = (event) => {
 				modelValue && props.size === 'base' ? baseFocused : '',
 
 				'absolute top-11 left-2 hover:opacity-70 duration-300 rounded-md px-1.5 z-10',
+
+				taskStore.darkMode && '!text-gray-200 !bg-darkmode-10',
 			]"
 		>
 			{{ title }}

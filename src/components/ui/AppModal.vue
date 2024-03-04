@@ -109,6 +109,7 @@ const submitEditedTask = () => {
 						leave-to="opacity-0 scale-95"
 					>
 						<DialogPanel
+							:class="{ '!bg-darkmode-10 text-gray-100': taskStore.darkMode }"
 							class="w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all"
 						>
 							<div>
@@ -123,7 +124,12 @@ const submitEditedTask = () => {
 										}}
 									</h1>
 
-									<IconExit @click="emit('closeModal')" />
+									<IconExit
+										@click="emit('closeModal')"
+										:class="{
+											'hover:!text-darkmode-10': taskStore.darkMode,
+										}"
+									/>
 								</div>
 
 								<div class="flex justify-between space-x-5 border-b-2 pb-4">
@@ -226,6 +232,10 @@ const submitEditedTask = () => {
 										? submitCreatedTask()
 										: submitEditedTask()
 								"
+								:class="{
+									'!bg-darkmode-20 hover:!bg-darkmode-10 active:!bg-darkmode-20 !border-darkmode-20':
+										taskStore.darkMode,
+								}"
 								class="flex justify-center bg-gray-100 hover:bg-gray-200 active:bg-gray-300 duration-200 border rounded-full text-sm font-bold px-4 mt-4 pt-1.5 pb-2 w-full"
 							>
 								{{ actionType === 'create' ? $t('create') : $t('editModal') }}
