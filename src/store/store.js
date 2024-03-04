@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useTaskStore = defineStore({
 	id: 'taskManager',
-	state: () => ({ tasks: [], nextId: 1 }),
+	state: () => ({ tasks: [], nextId: 1, darkMode: false }),
 	actions: {
 		// adding task
 		addTask(task) {
@@ -40,6 +40,11 @@ export const useTaskStore = defineStore({
 			);
 
 			this.saveTasksToLocalStorage();
+		},
+
+		// dark mode toggle
+		toggleDarkMode() {
+			this.darkMode = !this.darkMode;
 		},
 	},
 });
