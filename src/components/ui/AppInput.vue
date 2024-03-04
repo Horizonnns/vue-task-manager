@@ -48,21 +48,6 @@ const size = computed(() => {
 	};
 });
 
-// input focus styles
-const smFocused = '-translate-y-[52px] bg-white text-xs !text-secondary';
-const smNotFocused = '-translate-y-[38px] text-gray-800';
-const baseFocused = '-translate-y-[54px] bg-white text-sm !text-secondary';
-const baseNotFocused = '-translate-y-[34px] text-gray-800';
-
-// translate title at the input and based on the size
-const translate = computed(() => {
-	if (props.size === 'sm') {
-		return isFocused.value ? smFocused : smNotFocused;
-	} else if (props.size === 'base') {
-		return isFocused.value ? baseFocused : baseNotFocused;
-	}
-});
-
 // update input value
 const emit = defineEmits(['update:modelValue']);
 const updateValue = (event) => {
@@ -81,26 +66,26 @@ const updateValue = (event) => {
 			:id="id.toString()"
 			:class="[
 				taskStore.darkMode &&
-					'!bg-darkmode-20 !border-darkmode-10 text-gray-200 placeholder:text-gray-600',
+					'!bg-darkmode-20 !border-darkmode-10 text-gray-50 placeholder:text-gray-600',
 				size,
-				'block border rounded-lg outline-none font-medium placeholder:font-normal w-full appearance-none focus:outline-none focus:ring-0 focus:!border-blue-10 disabled:bg-gray-50 peer dark:bg-transparent',
+				'block border rounded-lg outline-none font-medium placeholder:font-normal w-full appearance-none focus:outline-none focus:ring-0 focus:!border-blue-10 disabled:bg-gray-50 peer placeholder:text-sm',
 			]"
 			:placeholder="isFocused ? placeholder : ''"
 		/>
+
 		<label
 			:for="id"
-			:class="[
-				translate,
-				modelValue && props.size === 'sm'
-					? 'top-7 -translate-y-[36px] bg-white text-xs !text-secondary'
-					: '',
+			:class="{
+				'bg-white -translate-y-[50px] peer-placeholder-shown:-translate-y-8 peer-focus:-translate-y-[50px] peer-focus:text-secondary text-gray-500 text-xs':
+					props.size === 'sm',
 
-				modelValue && props.size === 'base' ? baseFocused : '',
+				'bg-white -translate-y-[54px] peer-placeholder-shown:-translate-y-8 peer-focus:-translate-y-[54px] peer-focus:text-secondary text-gray-500 text-sm':
+					props.size === 'base',
 
-				'absolute top-11 left-2 hover:opacity-70 duration-300 rounded-md px-1.5 z-10',
-
-				taskStore.darkMode && '!text-gray-200 !bg-darkmode-10',
-			]"
+				'!bg-darkmode-10 peer-focus:text-gray-50 text-gray-50':
+					taskStore.darkMode,
+			}"
+			class="absolute top-11 left-2 hover:opacity-70 duration-300 rounded-md px-1.5 z-10"
 		>
 			{{ title }}
 		</label>
