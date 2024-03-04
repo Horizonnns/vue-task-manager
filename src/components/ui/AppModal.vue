@@ -63,12 +63,12 @@ const isFormValid = (formData) => {
 const submitCreatedTask = () => {
 	// сhecking for filled-in fields
 	if (!isFormValid(form.value)) {
-		notify('error', 'Заполните все поля перед созданием задачи');
+		notify('error', 'fillInAllFieldsForCreating');
 		return;
 	}
 
 	taskStore.addTask(form.value);
-	notify('message', 'Задача успешно создано!');
+	notify('message', 'taskCreatedSuccess');
 	emit('closeModal');
 	resetModalForm();
 };
@@ -76,12 +76,12 @@ const submitCreatedTask = () => {
 const submitEditedTask = () => {
 	// сhecking for filled-in fields
 	if (!isFormValid(editedForm.value)) {
-		notify('error', 'Заполните все поля перед изменением задачи');
+		notify('error', 'fillInAllFieldsForUpdating');
 		return;
 	}
 
 	taskStore.editTask({ ...props.getTaskWithID, ...editedForm.value });
-	notify('message', 'Задача успешно изменена!');
+	notify('message', 'taskChangedSuccess');
 	emit('closeModal');
 };
 </script>

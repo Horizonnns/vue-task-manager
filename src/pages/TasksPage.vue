@@ -30,7 +30,7 @@ const closeModal = () => {
 // delete-task-with-id
 const deleteTask = (task) => {
 	taskStore.removeTask(task.id);
-	notify('message', 'Задача успешно удалена!');
+	notify('message', 'taskDeletedSuccess');
 };
 
 // edit-task-with-id

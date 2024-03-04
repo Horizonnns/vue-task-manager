@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { notify, notifyStatus, notifyMessage } from '../../composables/notify';
+import { notifyStatus, notifyMessage } from '../../composables/notify';
 import IconNotify from '../icons/IconNotify.vue';
 
 const localNotifyStatus = ref(notifyStatus.value);
@@ -29,7 +29,7 @@ const slideDown = {
 		>
 			<IconNotify />
 
-			<span class="text-center">{{ notifyMessage.text }}</span>
+			<span class="text-center">{{ $t(notifyMessage.text) }}</span>
 		</div>
 	</transition>
 </template>
