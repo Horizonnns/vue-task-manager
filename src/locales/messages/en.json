@@ -16,18 +16,20 @@
 	"secondNav": "Tasks",
 	"logo": "Task Manager",
 	"mainTitle": "Your dream task manager...",
+	"goManaging": "Try for free",
+	"startManaging": "Start managing your tasks today",
 	"firstMainParagraph": "Welcome to our task management platform - a flexible and efficient companion designed to help you navigate the maze of daily tasks and responsibilities with ease. This progressive application offers a powerful set of features crafted specifically to meet users' needs in various areas, whether personal or professional. Our mission is to empower you with organization and mindfulness, transforming the way you manage tasks so you can focus on what truly matters - growth, productivity, and overall well-being. At the core of our Task Manager are several key principles aimed at promoting an optimal user experience and sustainable engagement:",
 	"secondMainParagraph": "As you embark on the journey to enhanced productivity, remember that mastery comes from regular practice and gradual mastery. Conquer the learning curve, and soon you'll intuitively command your Task Manager, freeing up mental resources for higher cognitive processes. Cultivated efficiency paves the way for enriched experiences and heightened creativity. Happy organizing!",
 	"firstAdvantages": {
-		"simplicity": "1. Simplicity",
-		"simplicityChild": "- We believe that task management should not add complexity but rather simplify daily routines. As a result, every feature in our system has been meticulously refined for ease of use, ensuring quick adoption even for beginners."
+		"simplicity": "Simplicity",
+		"simplicityChild": "Each function in our system has been meticulously refined for ease of use, ensuring quick adoption even by beginners"
 	},
 	"secondAdvantages": {
-		"flexibility": "2. Flexibility",
-		"flexibilityChild": "- In our dynamic world, flexibility plays a key role. That's why our tool provides numerous customization options, allowing everyone to shape their workspace according to specific preferences and requirements."
+		"flexibility": "Flexibility",
+		"flexibilityChild": "Allows everyone to customize their workspace according to specific preferences and requirements"
 	},
 	"thirdAdvantages": {
-		"availability": "3. Availability",
-		"availabilityChild": "- With constant access through desktop and mobile platforms, staying connected to your evolving to-do lists becomes second nature. Know that important updates are just a touch away, regardless of your location or time zone."
+		"availability": "Availability",
+		"availabilityChild": "With constant access through desktop and mobile platforms, staying connected to your evolving to-do lists becomes second nature. Know that important updates are just a touch away, regardless of your location or time zone"
 	}
 }
