@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { notifyStatus, notifyMessage } from '../../composables/notify';
+import { notifyStatus, notifyMessage } from '@/composables/notify';
 import IconNotify from '../icons/IconNotify.vue';
 
 const localNotifyStatus = ref(notifyStatus.value);

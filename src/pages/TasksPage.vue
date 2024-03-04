@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { notify } from '../composables/notify';
-import { useTaskStore } from '../store/store';
-import AppModal from '../components/ui/AppModal.vue';
-import IconEdit from '../components/icons/IconEdit.vue';
-import IconDelete from '../components/icons/IconDelete.vue';
+import { notify } from '@/composables/notify';
+import { useTaskStore } from '@/store/store';
+import AppModal from '@/components/ui/AppModal.vue';
+import IconEdit from '@/components/icons/IconEdit.vue';
+import IconDelete from '@/components/icons/IconDelete.vue';
 
 const taskStore = useTaskStore();
 onMounted(() => {

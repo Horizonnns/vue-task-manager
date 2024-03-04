@@ -1,7 +1,7 @@
 <script setup>
 import AppSelect from './ui/AppSelect.vue';
 import AppDarkLight from './ui/AppDarkLight.vue';
-import { useTaskStore } from '../store/store';
+import { useTaskStore } from '@/store/store';
 const taskStore = useTaskStore();
 
 const navigation = [

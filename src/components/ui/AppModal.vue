@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import { useTaskStore } from '../../store/store';
-import { notify } from '../../composables/notify';
+import { useTaskStore } from '@/store/store';
+import { notify } from '@/composables/notify';
 import AppInput from './AppInput.vue';
 import IconExit from '../icons/IconExit.vue';
 import {

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useTaskStore } from '../../store/store';
+import { useTaskStore } from '@/store/store';
 const taskStore = useTaskStore();
 
 const props = defineProps({

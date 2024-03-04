@@ -1,5 +1,5 @@
 <script setup>
-import { useTaskStore } from '../store/store';
+import { useTaskStore } from '@/store/store';
 const taskStore = useTaskStore();
 
 const cardAdvantages = [
