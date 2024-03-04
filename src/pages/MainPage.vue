@@ -1,53 +1,45 @@
+<script setup>
+import { useTaskStore } from '../store/store';
+const taskStore = useTaskStore();
+
+const cardAdvantages = [
+	{ title: 'advantages.firtsTitle', descr: 'advantages.firstDescr' },
+	{ title: 'advantages.secondTitle', descr: 'advantages.secondDescr' },
+	{ title: 'advantages.thirdTitle', descr: 'advantages.thirdDescr' },
+];
+</script>
+
 <template>
-	<main class="bg-white space-y-20">
+	<main
+		:class="[taskStore.darkMode ? 'bg-darkmode-10 text-white' : '']"
+		class="space-y-20 duration-500"
+	>
 		<section class="container">
-			<h2 class="text-center text-3xl font-bold leading-6 mt-12 mb-6">
+			<h2 class="text-center text-3xl font-bold leading-6 pt-12 mb-6">
 				{{ $t('mainTitle') }}
 			</h2>
 
-			<div class="max-w-full prose space-y-12">
+			<div
+				:class="{ 'dark:prose-invert': taskStore.darkMode }"
+				class="prose max-w-full space-y-12 duration-500"
+			>
 				<p>
 					{{ $t('firstMainParagraph') }}
 				</p>
 
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					<div class="bg-white shadow-sm rounded-md border px-6">
+					<div
+						v-for="card in cardAdvantages"
+						:key="card"
+						class="shadow-sm rounded-md border px-6"
+					>
 						<img
 							src="https://via.placeholder.com/150x150"
 							alt="Icon of a list"
 						/>
-						<h4 class="text-xl font-bold mb-2">
-							{{ $t('firstAdvantages.simplicity') }}
-						</h4>
-						<p class="text-gray-600">
-							{{ $t('firstAdvantages.simplicityChild') }}
-						</p>
-					</div>
 
-					<div class="bg-white shadow-sm rounded-md border px-6">
-						<img
-							src="https://via.placeholder.com/150x150"
-							alt="Icon of a clock"
-						/>
-						<h4 class="text-xl font-bold mb-2">
-							{{ $t('secondAdvantages.flexibility') }}
-						</h4>
-						<p class="text-gray-600">
-							{{ $t('secondAdvantages.flexibilityChild') }}
-						</p>
-					</div>
-
-					<div class="bg-white shadow-sm rounded-md border px-6">
-						<img
-							src="https://via.placeholder.com/150x150"
-							alt="Icon of a calendar"
-						/>
-						<h4 class="text-xl font-bold mb-2">
-							{{ $t('thirdAdvantages.availability') }}
-						</h4>
-						<p class="text-gray-600">
-							{{ $t('thirdAdvantages.availabilityChild') }}
-						</p>
+						<h4 class="text-xl font-bold mb-2">{{ $t(card.title) }}</h4>
+						<p>{{ $t(card.descr) }}</p>
 					</div>
 				</div>
 
@@ -57,13 +49,17 @@
 			</div>
 		</section>
 
-		<section class="bg-blue-500 text-center py-20">
+		<section
+			:class="{ 'bg-darkmode-20': taskStore.darkMode }"
+			class="bg-blue-500 text-center py-20"
+		>
 			<h3 class="text-3xl font-bold text-white mb-8">
 				{{ $t('startManaging') }}
 			</h3>
 
 			<router-link
 				to="/tasks"
+				:class="{ 'bg-white text-darkmode-20': taskStore.darkMode }"
 				class="bg-white hover:!bg-blue-100 active:!bg-blue-600 active:text-white text-blue-500 py-3 px-6 rounded-md"
 			>
 				{{ $t('goManaging') }}
