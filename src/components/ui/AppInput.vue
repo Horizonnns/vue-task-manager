@@ -82,7 +82,7 @@ const updateValue = (event) => {
 				'bg-white -translate-y-[54px] peer-placeholder-shown:-translate-y-8 peer-focus:-translate-y-[54px] peer-focus:text-secondary text-gray-500 text-sm':
 					props.size === 'base',
 
-				'!bg-darkmode-10 peer-focus:text-gray-50 text-gray-50':
+				'!bg-darkmode-10 peer-focus:text-gray-50 !text-gray-200':
 					taskStore.darkMode,
 			}"
 			class="absolute top-11 left-2 hover:opacity-70 duration-300 rounded-md px-1.5 z-10"
