@@ -74,12 +74,6 @@ const submitCreatedTask = () => {
 };
 
 const submitEditedTask = () => {
-	// сhecking for filled-in fields
-	if (!isFormValid(editedForm.value)) {
-		notify('error', 'fillInAllFieldsForUpdating');
-		return;
-	}
-
 	taskStore.editTask({ ...props.getTaskWithID, ...editedForm.value });
 	notify('message', 'taskChangedSuccess');
 	emit('closeModal');
