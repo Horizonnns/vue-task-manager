@@ -53,8 +53,20 @@ const editedForm = ref({
 
 const emit = defineEmits(['closeModal']);
 
+// сhecking fields
+const isFormValid = (formData) => {
+	const requiredFields = ['title', 'category', 'priority', 'status', 'tag'];
+	return requiredFields.every((field) => formData[field]);
+};
+
 // create-new-task
 const submitCreatedTask = () => {
+	// сhecking for filled-in fields
+	if (!isFormValid(form.value)) {
+		notify('error', 'Заполните все поля перед созданием задачи');
+		return;
+	}
+
 	taskStore.addTask(form.value);
 	notify('message', 'Задача успешно создано!');
 	emit('closeModal');
@@ -62,6 +74,12 @@ const submitCreatedTask = () => {
 };
 
 const submitEditedTask = () => {
+	// сhecking for filled-in fields
+	if (!isFormValid(editedForm.value)) {
+		notify('error', 'Заполните все поля перед изменением задачи');
+		return;
+	}
+
 	taskStore.editTask({ ...props.getTaskWithID, ...editedForm.value });
 	notify('message', 'Задача успешно изменена!');
 	emit('closeModal');
