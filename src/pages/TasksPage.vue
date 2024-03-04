@@ -34,9 +34,9 @@ const deleteTask = (task) => {
 };
 
 // edit-task-with-id
-const getTaskWithID = ref();
-const edTask = (task) => {
-	getTaskWithID.value = task;
+const getTaskWithID = ref(null);
+const edTask = (taskId) => {
+	getTaskWithID.value = taskId;
 	actionType.value = 'edit';
 	openModal();
 };
@@ -131,7 +131,7 @@ const formatTime = (timestamp) => {
 
 							<td scope="col" class="space-x-3">
 								<button
-									@click.stop="edTask(task)"
+									@click.stop="edTask(task.id)"
 									title="Изменить задачу"
 									class="bg-white hover:!bg-gray-100 active:!bg-gray-200 border rounded-lg p-2"
 								>

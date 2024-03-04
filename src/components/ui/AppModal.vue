@@ -16,7 +16,7 @@ const taskStore = useTaskStore();
 const props = defineProps({
 	isOpen: String,
 	actionType: String,
-	getTaskWithID: Object,
+	getTaskWithID: Number,
 });
 
 const form = ref({
@@ -73,8 +73,22 @@ const submitCreatedTask = () => {
 	resetModalForm();
 };
 
+const taskId = ref(null);
+// check with task-id
+const checkTaskId = () => {
+	taskId.value = taskStore.tasks.find(
+		(task) => task.id === props.getTaskWithID
+	);
+
+	if (taskId) {
+		editedForm.value = { ...taskId.value };
+	}
+};
+
+checkTaskId();
+
 const submitEditedTask = () => {
-	taskStore.editTask({ ...props.getTaskWithID, ...editedForm.value });
+	taskStore.editTask({ ...editedForm.value });
 	notify('message', 'taskChangedSuccess');
 	emit('closeModal');
 };
