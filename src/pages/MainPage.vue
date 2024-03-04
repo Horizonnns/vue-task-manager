@@ -31,7 +31,8 @@ const cardAdvantages = [
 					<div
 						v-for="card in cardAdvantages"
 						:key="card"
-						class="shadow-sm rounded-md border px-6"
+						:class="{ 'bg-darkmode-20 !border-gray-800': taskStore.darkMode }"
+						class="shadow-sm rounded-md border duration-500 px-6"
 					>
 						<img
 							src="https://via.placeholder.com/150x150"

@@ -1,15 +1,15 @@
 <script setup>
+import { useRoute } from 'vue-router';
 import Header from './components/Header.vue';
 import Main from './pages/MainPage.vue';
 import Tasks from './pages/TasksPage.vue';
 import Notify from './components/ui/Notify.vue';
 
-import { useRoute } from 'vue-router';
 const route = useRoute();
 </script>
 
 <template>
-	<section class="space-y-4">
+	<section>
 		<Header />
 
 		<Notify class="fixed top-16 z-20" />
