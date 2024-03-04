@@ -40,6 +40,20 @@ const edTask = (task) => {
 	actionType.value = 'edit';
 	openModal();
 };
+
+// formating time
+const formatTime = (timestamp) => {
+	const options = {
+		year: 'numeric',
+		month: 'numeric',
+		day: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false,
+	};
+
+	return new Date(timestamp).toLocaleString('ru', options);
+};
 </script>
 
 <template>
@@ -84,7 +98,7 @@ const edTask = (task) => {
 					<td scope="col">{{ task.category }}</td>
 					<td scope="col">{{ task.priority }}</td>
 					<td scope="col">{{ task.status }}</td>
-					<td scope="col">{{ task.created_at }}</td>
+					<td scope="col">{{ formatTime(task.created_at) }}</td>
 					<td scope="col">Обновлено</td>
 					<td scope="col">{{ task.tag }}</td>
 					<th scope="col" class="space-x-3">
