@@ -1,5 +1,8 @@
 <script setup>
 import AppSelect from './ui/AppSelect.vue';
+import AppDarkLight from './ui/AppDarkLight.vue';
+import { useTaskStore } from '../store/store';
+const taskStore = useTaskStore();
 
 const navigation = [
 	{ title: 'firstNav', href: '/' },
@@ -8,7 +11,10 @@ const navigation = [
 </script>
 
 <template>
-	<header class="bg-blue-20 text-white py-3">
+	<header
+		:class="{ 'bg-darkmode-20': taskStore.darkMode }"
+		class="bg-blue-20 text-white duration-500 py-3"
+	>
 		<div class="container flex items-center justify-between">
 			<router-link to="/">
 				<h2
@@ -30,6 +36,7 @@ const navigation = [
 				</ul>
 
 				<AppSelect />
+				<AppDarkLight @click="taskStore.toggleDarkMode()" />
 			</nav>
 		</div>
 	</header>
