@@ -96,9 +96,9 @@ const formatTime = (timestamp) => {
 				<table class="w-full text-sm text-left rtl:text-right">
 					<thead
 						:class="{
-							'dark:bg-darkmode-10': taskStore.darkMode,
+							'dark:bg-darkmode-10 text-gray-500': taskStore.darkMode,
 						}"
-						class="text-xs uppercase duration-700 bg-gray-50 dark:text-gray-400"
+						class="text-xs uppercase duration-700 bg-gray-50"
 					>
 						<tr>
 							<th scope="col" class="px-6 py-3">ID</th>
