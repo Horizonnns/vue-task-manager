@@ -58,7 +58,7 @@ const edTask = (task) => {
 			@click="openModal('create')"
 			class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
 		>
-			{{ $t('createTaskBtn') }}
+			{{ $t('createTask') }}
 		</button>
 
 		<!-- table -->
@@ -70,11 +70,10 @@ const edTask = (task) => {
 					<th scope="col">{{ $t('category') }}</th>
 					<th scope="col">{{ $t('priority') }}</th>
 					<th scope="col">{{ $t('status') }}</th>
-					<th scope="col">{{ $t('description') }}</th>
 					<th scope="col">{{ $t('createdAt') }}</th>
 					<th scope="col">{{ $t('updatedAt') }}</th>
-					<th scope="col">{{ $t('edit') }}</th>
 					<th scope="col">{{ $t('tag') }}</th>
+					<th scope="col">{{ $t('edit') }}</th>
 				</tr>
 			</thead>
 
@@ -85,9 +84,9 @@ const edTask = (task) => {
 					<td scope="col">{{ task.category }}</td>
 					<td scope="col">{{ task.priority }}</td>
 					<td scope="col">{{ task.status }}</td>
-					<td scope="col">Описание</td>
 					<td scope="col">{{ task.created_at }}</td>
 					<td scope="col">Обновлено</td>
+					<td scope="col">{{ task.tag }}</td>
 					<th scope="col" class="space-x-3">
 						<button
 							@click.stop="edTask(task)"
@@ -105,7 +104,6 @@ const edTask = (task) => {
 							<IconDelete />
 						</button>
 					</th>
-					<td scope="col">{{ task.tag }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -119,7 +117,7 @@ const edTask = (task) => {
 				@click="openModal('create')"
 				class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
 			>
-				{{ $t('createTaskBtn') }}
+				{{ $t('createTask') }}
 			</button>
 		</div>
 	</main>

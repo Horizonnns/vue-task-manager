@@ -4,7 +4,6 @@ import { useTaskStore } from '../../store/store';
 import { notify } from '../../composables/notify';
 import AppInput from './AppInput.vue';
 import IconExit from '../icons/IconExit.vue';
-
 import {
 	TransitionRoot,
 	TransitionChild,
@@ -107,8 +106,8 @@ const submitEditedTask = () => {
 									<h1 class="text-xl font-bold">
 										{{
 											actionType === 'create'
-												? 'Новая задача'
-												: 'Изменить задачу'
+												? $t('createTask')
+												: $t('editTask')
 										}}
 									</h1>
 
@@ -120,7 +119,7 @@ const submitEditedTask = () => {
 										<AppInput
 											size="base"
 											type="text"
-											title="Заголовок"
+											:title="$t('tableTitle')"
 											placeholder="Первое задание"
 											:modelValue="
 												actionType === 'create' ? form.title : editedForm.title
@@ -136,7 +135,7 @@ const submitEditedTask = () => {
 										<AppInput
 											size="base"
 											type="text"
-											title="Категория"
+											:title="$t('category')"
 											placeholder="Категория задачи"
 											:modelValue="
 												actionType === 'create'
@@ -154,7 +153,7 @@ const submitEditedTask = () => {
 										<AppInput
 											size="base"
 											type="text"
-											title="Приоритет"
+											:title="$t('priority')"
 											placeholder="Приоритет задачи"
 											:modelValue="
 												actionType === 'create'
@@ -174,7 +173,7 @@ const submitEditedTask = () => {
 										<AppInput
 											size="base"
 											type="text"
-											title="Статус"
+											:title="$t('status')"
 											placeholder="Статус текущей задачи"
 											:modelValue="
 												actionType === 'create'
@@ -192,7 +191,7 @@ const submitEditedTask = () => {
 										<AppInput
 											size="base"
 											type="text"
-											title="Тэг"
+											:title="$t('tag')"
 											placeholder="#тэг"
 											v-model="form.tag"
 											:modelValue="
@@ -217,7 +216,7 @@ const submitEditedTask = () => {
 								"
 								class="flex justify-center bg-gray-100 hover:bg-gray-200 active:bg-gray-300 duration-200 border rounded-full text-sm font-bold px-4 mt-4 pt-1.5 pb-2 w-full"
 							>
-								{{ actionType === 'create' ? 'Создать' : 'Изменить' }}
+								{{ actionType === 'create' ? $t('create') : $t('editModal') }}
 							</button>
 						</DialogPanel>
 					</TransitionChild>
