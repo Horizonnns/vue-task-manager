@@ -16,6 +16,11 @@ export default defineConfig({
 			strictMessage: false,
 		}),
 	],
+	resolve: {
+		alias: {
+			'@': fileURLToPath(new URL('./src', import.meta.url)),
+		},
+	},
 	server: {
 		port: 8080,
 		hot: true,
