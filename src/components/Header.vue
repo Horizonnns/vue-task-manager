@@ -12,16 +12,16 @@ const navigation = [
 		<div class="container flex items-center justify-between">
 			<router-link to="/">
 				<h2
-					class="text-xl font-bold hover:text-white/80 duration-200 select-none"
+					class="text-2xl font-bold hover:text-white/80 duration-200 select-none"
 				>
 					{{ $t('logo') }}
 				</h2>
 			</router-link>
 
-			<nav class="flex items-center space-x-4 text-sm">
+			<nav class="flex items-center space-x-4">
 				<ul v-for="nav in navigation" :key="nav">
 					<li>
-						<button>
+						<button class="hover:text-gray-300">
 							<router-link :to="nav.href">
 								{{ $t(nav.title) }}
 							</router-link>

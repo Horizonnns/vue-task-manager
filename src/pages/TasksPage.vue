@@ -66,7 +66,9 @@ const formatTime = (timestamp) => {
 		@closeModal="closeModal"
 	/>
 
-	<main class="bg-white border shadow-xl rounded-lg space-y-6 p-6 my-10">
+	<main
+		class="container bg-white border shadow-sm rounded-lg space-y-6 p-6 my-10"
+	>
 		<button
 			v-if="tasks.length"
 			@click="openModal('create')"

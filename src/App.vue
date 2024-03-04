@@ -14,10 +14,8 @@ const route = useRoute();
 
 		<Notify class="fixed top-16 z-20" />
 
-		<div class="container">
-			<Main v-if="route.path === '/'" />
+		<Main v-if="route.path === '/'" />
 
-			<Tasks v-if="route.path === '/tasks'" />
-		</div>
+		<Tasks v-if="route.path === '/tasks'" />
 	</section>
 </template>
