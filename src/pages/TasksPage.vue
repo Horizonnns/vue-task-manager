@@ -57,84 +57,113 @@ const formatTime = (timestamp) => {
 </script>
 
 <template>
-	<!-- task-modal -->
-	<AppModal
-		v-if="isOpen"
-		:isOpen="isOpen"
-		:actionType="actionType"
-		:getTaskWithID="getTaskWithID"
-		@closeModal="closeModal"
-	/>
-
-	<main
-		class="container bg-white border shadow-sm rounded-lg space-y-6 p-6 my-10"
+	<section
+		:class="{ 'bg-darkmode-10': taskStore.darkMode }"
+		class="h-screen duration-500 py-10"
 	>
-		<button
-			v-if="tasks.length"
-			@click="openModal('create')"
-			class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
+		<!-- task-modal -->
+		<AppModal
+			v-if="isOpen"
+			:isOpen="isOpen"
+			:actionType="actionType"
+			:getTaskWithID="getTaskWithID"
+			@closeModal="closeModal"
+		/>
+
+		<main
+			:class="{
+				'bg-darkmode-20 text-white !border-gray-800': taskStore.darkMode,
+			}"
+			class="duration-500 container border shadow-sm rounded-lg space-y-6 p-6"
 		>
-			{{ $t('createTask') }}
-		</button>
-
-		<!-- table -->
-		<table v-if="tasks.length" class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">{{ $t('tableTitle') }}</th>
-					<th scope="col">{{ $t('category') }}</th>
-					<th scope="col">{{ $t('priority') }}</th>
-					<th scope="col">{{ $t('status') }}</th>
-					<th scope="col">{{ $t('createdAt') }}</th>
-					<th scope="col">{{ $t('updatedAt') }}</th>
-					<th scope="col">{{ $t('tag') }}</th>
-					<th scope="col">{{ $t('edit') }}</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr v-for="task in tasks" :key="task.id" class="cursor-pointer">
-					<th scope="col">{{ task.id }}</th>
-					<th scope="col">{{ task.title }}</th>
-					<td scope="col">{{ task.category }}</td>
-					<td scope="col">{{ task.priority }}</td>
-					<td scope="col">{{ task.status }}</td>
-					<td scope="col">{{ formatTime(task.created_at) }}</td>
-					<td scope="col">Обновлено</td>
-					<td scope="col">{{ task.tag }}</td>
-					<th scope="col" class="space-x-3">
-						<button
-							@click.stop="edTask(task)"
-							title="Изменить задачу"
-							class="bg-white hover:!bg-gray-100 active:!bg-gray-200 border rounded-lg p-2"
-						>
-							<IconEdit />
-						</button>
-
-						<button
-							@click.stop="deleteTask(task)"
-							title="Удалить задачу"
-							class="bg-white hover:!bg-gray-100 active:!bg-gray-200 text-red-500 border rounded-lg p-2"
-						>
-							<IconDelete />
-						</button>
-					</th>
-				</tr>
-			</tbody>
-		</table>
-
-		<div v-else class="flex items-center justify-between">
-			<p class="text-center text-lg">
-				{{ $t('tasklist') }}
-			</p>
-
-			<button
-				@click="openModal('create')"
-				class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
+			<div
+				v-if="tasks.length"
+				class="flex items-center justify-between border-b border-gray-700 pb-2"
 			>
-				{{ $t('createTask') }}
-			</button>
-		</div>
-	</main>
+				<h2 class="text-xl">Таблица задач</h2>
+
+				<button
+					@click="openModal('create')"
+					:class="{ 'bg-darkmode-10': taskStore.darkMode }"
+					class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
+				>
+					{{ $t('createTask') }}
+				</button>
+			</div>
+
+			<!-- flowbite-table -->
+			<div v-if="tasks.length" class="relative overflow-x-auto">
+				<table class="w-full text-sm text-left rtl:text-right">
+					<thead
+						:class="{
+							'dark:bg-darkmode-10': taskStore.darkMode,
+						}"
+						class="text-xs uppercase duration-700 bg-gray-50 dark:text-gray-400"
+					>
+						<tr>
+							<th scope="col" class="px-6 py-3">ID</th>
+							<th scope="col" class="px-6 py-3">{{ $t('tableTitle') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('category') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('priority') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('status') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('createdAt') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('updatedAt') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('tag') }}</th>
+							<th scope="col" class="px-6 py-3">{{ $t('edit') }}</th>
+						</tr>
+					</thead>
+
+					<tbody v-for="task in tasks" :key="task.id">
+						<tr
+							:class="{
+								'dark:bg-darkmode-20': taskStore.darkMode,
+							}"
+							class="border-b duration-500"
+						>
+							<td class="px-6 py-4">{{ task.id }}</td>
+							<td class="px-6 py-4">{{ task.title }}</td>
+							<td class="px-6 py-4">{{ task.category }}</td>
+							<td class="px-6 py-4">{{ task.priority }}</td>
+							<td class="px-6 py-4">{{ task.status }}</td>
+							<td class="px-6 py-4">{{ formatTime(task.created_at) }}</td>
+							<td class="px-6 py-4">Обновлено</td>
+							<td class="px-6 py-4">{{ task.tag }}</td>
+
+							<td scope="col" class="space-x-3">
+								<button
+									@click.stop="edTask(task)"
+									title="Изменить задачу"
+									class="bg-white hover:!bg-gray-100 active:!bg-gray-200 border rounded-lg p-2"
+								>
+									<IconEdit />
+								</button>
+
+								<button
+									@click.stop="deleteTask(task)"
+									title="Удалить задачу"
+									class="bg-white hover:!bg-gray-100 active:!bg-gray-200 text-red-500 border rounded-lg p-2"
+								>
+									<IconDelete />
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div v-else class="flex items-center justify-between">
+				<p class="text-center text-lg">
+					{{ $t('tasklist') }}
+				</p>
+
+				<button
+					@click="openModal('create')"
+					:class="{ 'bg-darkmode-10': taskStore.darkMode }"
+					class="px-3 py-1.5 rounded-md bg-blue-20 hover:bg-blue-600 active:bg-blue-700 duration-150 text-white"
+				>
+					{{ $t('createTask') }}
+				</button>
+			</div>
+		</main>
+	</section>
 </template>
