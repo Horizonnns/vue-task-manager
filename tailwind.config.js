@@ -11,6 +11,10 @@ export default {
 
 			colors: {
 				secondary: '#731982',
+				darkmode: {
+					10: '#30353e',
+					20: '#1e2531',
+				},
 				blue: {
 					10: '#283444',
 					20: '#3b82f6',
