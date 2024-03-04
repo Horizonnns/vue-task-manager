@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* fonts */
+@layer base {
+	@font-face {
+		font-family: 'Archivo';
+		font-weight: 400;
+		src: url('../fonts/Archivo-Regular.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'Archivo';
+		font-weight: 700;
+		src: url('../fonts/Archivo-Bold.woff') format('woff');
+	}
+
+	@font-face {
+		font-family: 'Archivo';
+		font-weight: 800;
+		src: url('../fonts/Archivo-Black.woff') format('woff');
+	}
+}
+/* fonts */
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	color: #333;
+	font-family: 'Archivo', sans-serif;
+}
