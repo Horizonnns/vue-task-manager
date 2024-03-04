@@ -1,4 +1,9 @@
 {
+	"taskCreatedSuccess": "The task was successfully created!",
+	"taskChangedSuccess": "The task was successfully updated!",
+	"taskDeletedSuccess": "The task was successfully deleted!",
+	"fillInAllFieldsForCreating": "Fill in all the fields before creating a task!",
+	"fillInAllFieldsForUpdating": "Fill in all the fields before updating the task!",
 	"tableTitle": "Title",
 	"category": "Category",
 	"priority": "Priority",

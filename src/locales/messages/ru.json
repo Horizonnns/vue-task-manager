@@ -1,4 +1,9 @@
 {
+	"taskCreatedSuccess": "Задача успешно создана!",
+	"taskChangedSuccess": "Задача успешно изменена!",
+	"taskDeletedSuccess": "Задача успешно удалена!",
+	"fillInAllFieldsForCreating": "Заполните все поля перед созданием задачи!",
+	"fillInAllFieldsForUpdating": "Заполните все поля перед изменением задачи!",
 	"tableTitle": "Заголовок",
 	"category": "Категория",
 	"priority": "Приоритет",
