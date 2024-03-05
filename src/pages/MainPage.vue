@@ -20,7 +20,7 @@ const cardAdvantages = [
 			</h2>
 
 			<div
-				:class="{ 'dark:prose-invert': taskStore.darkMode }"
+				:class="{ 'prose-invert': taskStore.darkMode }"
 				class="prose max-w-full space-y-12 duration-500"
 			>
 				<p>

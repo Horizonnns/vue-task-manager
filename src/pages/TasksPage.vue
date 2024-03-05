@@ -76,7 +76,7 @@ const formatTime = (timestamp) => {
 				v-if="tasks.length"
 				class="flex items-center justify-between border-b border-gray-700 pb-2"
 			>
-				<h2 class="text-xl">Таблица задач</h2>
+				<h2 class="text-xl">{{ $t('taskTable') }}</h2>
 
 				<button
 					@click="openModal('create')"
@@ -92,9 +92,9 @@ const formatTime = (timestamp) => {
 				<table class="w-full text-sm text-left rtl:text-right">
 					<thead
 						:class="{
-							'dark:bg-darkmode-10 text-gray-500': taskStore.darkMode,
+							'bg-darkmode-10 text-gray-500': taskStore.darkMode,
 						}"
-						class="text-xs uppercase duration-700 bg-gray-50"
+						class="text-xs uppercase duration-700"
 					>
 						<tr>
 							<th scope="col" class="px-6 py-3">ID</th>
