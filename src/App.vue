@@ -13,7 +13,6 @@ const taskStore = useTaskStore();
 
 onMounted(() => {
 	taskStore.loadFromLocalStorage();
-	taskStore.autoToggleDarkMode();
 });
 </script>
 

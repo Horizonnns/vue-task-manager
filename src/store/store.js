@@ -50,12 +50,5 @@ export const useTaskStore = defineStore({
 			this.darkMode = !this.darkMode;
 			this.saveTasksToLocalStorage();
 		},
-
-		// dark/light mode auto switcher depending on time
-		autoToggleDarkMode() {
-			const currentHour = new Date().getHours();
-			this.darkMode = currentHour < 6 || currentHour >= 18;
-			this.saveTasksToLocalStorage();
-		},
 	},
 });
